@@ -1,15 +1,23 @@
-# <Título do projeto>
+# <Analise de Sentimento de Tweets em Português com Filtro aplicado>
 
-Insira aqui uma introdução para que o leitor entenda o contexto e os problemas identificados. Tente apresetnar uma justificativa para o projeto. É desejável que também se insira um [graphical abstract](https://www.elsevier.com/authors/tools-and-resources/visual-abstract).
+Neste projeto desejamos desenvolver um modelo capaz de indicar o sentimento majoritario de um certo tema do Tweeter, seja ele positivo, negativo ou neutro. Para isso, utilizaremos técnicas de aprendizado de máquina e dados de textos marcados com sentimentos positivo e outros textos como negativo. O modelo por nós produzido deverá atingir a acurácia maior que "..."% e deverá ser disponibilizado em "...".
+
+Os dados de aprendizado estão categorizados como sentimento positivo, negativo ou neutro, o objetivo é fazer o modelo dizer se um tweet ou um conjunto de tweets de um mesmo tema tem certo sentimento atrelado e o quanto esse sentimento é presente. Foram usados os próprios computadores, dispositivos, etc, dos desenvolvedores da equipe para a análise exploratória dos dados, construção dos modelos e de implementação da solução.
+
+Com este projeto desejamos que qualquer usuario consiga fazer um requerimento dando de entrada um tema ou conjunto de palavras chave e a API possa retornar se esse tema ou conjunto tem mais sentimentos positivos ou negativos sobre ele. Resultado de muita importancia para todos os usuarios preocupados com a opnião sobre seu serviço ou produto ou analise de tema seja ele para quaisquer fins.
+
+As atividades e recursos necessários para conclusão do modelo foram: "..."
+
+Dado a grande gama de ferramentas disponiveis em suas bibliotecas, para dados e ML, este projeto será desenvolvido utilizando a linguagem python (versão 3.8.10)
+
+Bibliotecas utilizadas: "XListaX"
 
 ## Objetivos e resultados chave
-
 Em termos simples, os "Objetivos" se relacionam com a meta do projeto, e os "Resultados-Chave" expressam como essa meta será alcançada. Os Objetivos e resultados chave devem ser definidos no início de um projeto. A ideia é escolher uma métrica associada a um projeto e defini-la como o objetivo. Isso mostra a meta que você deseja alcançar. Em seguida, os resultados-chave são definidos para mostrar como atingir o objetivo. Os resultados principais são mensuráveis ​​e geralmente limitados a três a cinco por objetivo.
 
-Em síntese, os objetivos estão ligados as entregas e os resultados chave aos passos que precisam se seguir para conseguir alcançar os resultados.
-Exemplo de objetivos e resultados chave aplicados a projetos de ciência de dados.
+Em síntese, os objetivos estão ligados as entregas e os resultados chave aos passos que precisam se seguir para conseguir alcançar os resultados. Exemplo de objetivos e resultados chave aplicados a projetos de ciência de dados.
 
- - Realizar uma análise exploratória de dados de <conjunto de dados>
+ - Realizar uma análise exploratória de dados de <https://www.kaggle.com/datasets/augustop/portuguese-tweets-for-sentiment-analysis>
     - Indentificar variáveis, descrevê-las e definir os tipos de dados
     - Realizar transformação de variáveis (codificação)
     - Tratar de valores faltantes e valores discrepantes
