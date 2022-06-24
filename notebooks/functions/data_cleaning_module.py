@@ -8,6 +8,7 @@ Data: 21-06-2022
 
 from datetime import timezone, timedelta
 from pandas import to_datetime
+import nltk
 import re
 
 
@@ -30,6 +31,20 @@ def formatar_texto(texto: str) -> str:
 
     return texto
     
+
+def stemming(texto: str) -> str:
+    stemmer = nltk.stem.RSLPStemmer()
+    palavras = []
+    palavras = [stemmer.stem(palavra) for palavra in texto.split()]
+    return " ".join(palavras)
+    
+
+def remover_stop_words(texto: str, stop_words: list) -> str:
+    stopwords = nltk.corpus.stopwords.words("portuguese")
+    stopwords.extend(stop_words)
+    texto = " ".join(list(filter(lambda x: x not in stopwords, texto.split())))
+    return texto
+
     
 def get_period(hour):
     if hour >= 0 and hour < 6:
@@ -41,7 +56,6 @@ def get_period(hour):
     elif hour >= 18 and hour < 24:
         return "night"
         
-        
 
 def from_utc_to_local_time(london_time: str, london_reference: int):
     london_time = to_datetime(london_time) # str para datetime
@@ -51,8 +65,6 @@ def from_utc_to_local_time(london_time: str, london_reference: int):
 
 
 def main():
-    # test
-    # test
     # test
     print("Running")
 
