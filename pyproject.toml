@@ -17,7 +17,7 @@ invoke = "^1.7.0"
 wordcloud = "^1.8.1"
 nltk = "^3.7"
 demoji = "~1.0"
-snscrape = "^0.0"
+snscrape = "^0.4.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

@@ -3,7 +3,7 @@ Autor: @pythonistabr
 data: 23-06-2022
 """
 
-import pandas as pd
+from pandas import DataFrame
 import snscrape.modules.twitter as sntwitter
 
     
@@ -32,7 +32,7 @@ def search(limit: int, list_of_queries: list) -> list:
 
 
 
-def create_data_frame(dados: list) -> pd.DataFrame:
+def create_data_frame(dados: list) -> DataFrame:
   texto, nome_usuario, data_publicacao = [], [], []
   
   for tweet in dados:
@@ -40,7 +40,7 @@ def create_data_frame(dados: list) -> pd.DataFrame:
     data_publicacao.append(tweet["date"])
     nome_usuario.append(tweet["user_name"])
   
-  main_data = pd.DataFrame({"user_name":nome_usuario, "tweet":texto,
+  main_data = DataFrame({"user_name":nome_usuario, "tweet":texto,
                "date":data_publicacao})
   
   return main_data
