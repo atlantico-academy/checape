@@ -7,10 +7,14 @@ Data: 21-06-2022
 """
 
 from datetime import timezone, timedelta
+from nltk.stem import WordNetLemmatizer
 from pandas import to_datetime
+import string
+import spacy
 import nltk
 import re
 
+nlp = spacy.load("pt_core_news_sm");
 
 def limpa_texto(string):
   words = string.split()
@@ -18,12 +22,19 @@ def limpa_texto(string):
   return " ".join(words)
 
 
+def remove_special_chars(text: str) -> str:
+  chars = re.escape(string.punctuation)
+  clean_text = re.sub(r'['+chars+']','', text)
+  return clean_text
+    
+
 def formatar_texto(texto: str) -> str:
   texto = (
     re.sub(r"(http\S+)|(@\w+)", "", texto)  # remove links, usuários #
     .replace(".", "")
     .replace(";", "")
     .replace("—", "")
+
   )
 
   texto = re.sub(r"(  +)", " ", texto)  # remove espaços duplos
@@ -38,6 +49,12 @@ def stemming(texto: str) -> str:
   palavras = [stemmer.stem(palavra) for palavra in texto.split()]
   return " ".join(palavras)
   
+
+def lemmatizer(text: str) -> str:
+  doc = nlp("".join(text))
+  lemmas = [token.lemma_ for token in doc]
+  return " ".join(lemmas)
+
 
 def remover_stop_words(texto: str, stop_words: list) -> str:
   stopwords = nltk.corpus.stopwords.words("portuguese")
