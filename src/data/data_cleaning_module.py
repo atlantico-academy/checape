@@ -50,7 +50,7 @@ def stemming(texto: str) -> str:
   return " ".join(palavras)
   
 
-def lemmatizer(text: str) -> str:
+def lematization(text: str) -> str:
   doc = nlp("".join(text))
   lemmas = [token.lemma_ for token in doc]
   return " ".join(lemmas)
