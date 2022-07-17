@@ -63,7 +63,10 @@ def remover_stop_words(texto: str, stop_words: list) -> str:
   return texto
 
   
-def get_period(hour):
+def get_day_period(time: str) -> str:
+  time = to_datetime(time)
+  hour = time.hour
+  
   if hour >= 0 and hour < 6:
     return "overnight"
   elif hour >= 6 and hour < 12:
@@ -72,7 +75,7 @@ def get_period(hour):
     return "afternoon"
   elif hour >= 18 and hour < 24:
     return "night"
-    
+
 
 def from_utc_to_local_time(london_time: str, london_reference: int):
   london_time = to_datetime(london_time) # str para datetime
