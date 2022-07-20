@@ -1,23 +1,38 @@
 import streamlit as st
-from st_on_hover_tabs import on_hover_tabs
-from src.app import classificador, analise_exploratoria, analise_comparativa, sobre
+from streamlit_option_menu import option_menu
+from src.app import home, classificador, analise_exploratoria, analise_comparativa, sobre
+#from src.data import tweets_downloader
+
+#from st_on_hover_tabs import on_hover_tabs
 
 
-st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_html=True)
+#st.title("Análise de sentimentos em dados do Twitter")
+
 with st.sidebar:
-    tabs = on_hover_tabs(
-        tabName=['Classificador', 'Análise exploratória', 'Análise comparativa', 'Sobre'],
-        iconName=['check_circle', 'search', 'analytics', 'info'],
-        default_choice=0,
-        styles = {
-            'navtab': {'text-transform': 'Captalize'}
-        }
+    selected = option_menu(
+        menu_title = None,
+        options = ["Home", "Análise exploratória", "Análise comparativa", "Classificador", "Sobre"],
+        icons=["house", "search", "book", "folder", "person"],
+        menu_icon="cast",
+        default_index=0
+
     )
-if tabs == 'Classificador':
-    classificador.page()
-if tabs == 'Análise exploratória':
+
+if selected == "Home":
+    home.page()
+    #tweets_downloader.page()
+    #st.write("Home")
+if selected == "Classificador":
+    #classificador.page()
+    st.write("Classificador")
+if selected == "Análise exploratória":
     analise_exploratoria.page()
-if tabs == 'Análise comparativa':
+    st.write("Análise exploratória")
+if selected == "Análise comparativa":
     analise_comparativa.page()
-if tabs == 'Sobre':
-    sobre.page()
+    st.write("Análise comparativ")
+if selected == "Sobre":
+    #sobre.page()
+    sobre.teste()
+
+    
