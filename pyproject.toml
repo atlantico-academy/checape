@@ -14,7 +14,11 @@ seaborn = "^0.11.2"
 matplotlib = "^3.5.1"
 mkdocs = "^1.3.0"
 invoke = "^1.7.0"
+wordcloud = "^1.8.1"
 nltk = "^3.7"
+demoji = "~1.0"
+snscrape = "^0.4.3"
+spacy = "^3.4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
