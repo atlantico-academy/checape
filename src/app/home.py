@@ -66,7 +66,7 @@ def page():
 
                 #Remoção das stopwords e aplicação de stemming.
                 nltk.download("rslp")
-                stopwords = pd.read_csv("data/processed/stopwords.txt")
+                stopwords = pd.read_csv("src/files/stopwords.txt")
                 df_with_stopwords = formated_tweets_ordenados.copy()
                 df_with_stopwords["tweet"] = df_with_stopwords["tweet"].apply(
                     lambda tweet: dc.remover_stop_words(tweet, stopwords)
