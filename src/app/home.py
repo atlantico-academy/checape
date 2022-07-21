@@ -1,3 +1,4 @@
+# from tracemalloc import start
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -10,23 +11,29 @@ from src.data import data_cleaning_module as dc
 import demoji
 from joblib import load
 from streamlit_tags import st_tags
-
+from datetime import date, datetime
 twitter_number = 500
 twitter_number_remaining = 200
 
+
 def page():
+    start = "2008-01-01"
+    end = datetime.strftime(datetime.now(), '%Y-%m-%d')
     tags = st_tags(label="Pesquisa por hashtags")    
     use_date = st.checkbox("Limitar data", key="date", value=False)
-    col1, col2 = st.columns(2)  
-    start = col1.date_input("Data inicial", key="start", disabled=not(st.session_state["date"]))
-    end = col2.date_input("Data final", key="end", disabled=not(st.session_state["date"]))  
+    if st.session_state["date"]:
+        col1, col2 = st.columns(2)  
+        start = col1.date_input("Data inicial", key="start", disabled=not(st.session_state["date"]))
+        end = col2.date_input("Data final", key="end", disabled=not(st.session_state["date"]))  
+        start = datetime.strftime(start, "%Y-%m-%d")
+        end =  datetime.strftime(end, "%Y-%m-%d")
     btn = st.button("Pesquisar")
-    st.write(start)
-    st.write(end)
+    
     if btn:
         with st.spinner(f"Pesquisando tweets. Isso pode levar algum tempo..."):                
             lista = tags
-            tweets = td.search(twitter_number, lista, start, end)
+            tweets = td.search(twitter_number, lista,start, end)
+            st.write(tweets)
             if tweets:
                 tweets_ordenados =  sorted(tweets, key=lambda row:row['pontuacao'], reverse=1 )
                 tweets_ordenados = pd.DataFrame(tweets_ordenados)
@@ -43,7 +50,8 @@ def page():
                 formated_tweets_ordenados.drop(["number_words"], axis=1, inplace=True)
 
                 # Gerar lista de tweets com maior pontuação
-                list_tweets = list(formated_tweets_ordenados["tweet"])                         
+                list_tweets = list(formated_tweets_ordenados["tweet"])  
+                # list_tweets2 = list_tweets.copy()                       
                 list_tweets_10 = list_tweets[0:10]
 
                 #Préprocessamento de +200
@@ -77,25 +85,21 @@ def page():
                 #Selecionar os 200 tweets com maior pontuação
                 list_tweets = list(df_steamed_with_stopwords["tweet"])   
                 list_tweets_200 = list_tweets[0:twitter_number_remaining]
-                preditor = load("src/app/best_modelv3.joblib") 
-                predicao = preditor.predict_proba(list_tweets_200)[:,0]
+                preditor = load("models/best_modelv2.joblib") 
+                predicao = preditor.predict(list_tweets_200)
 
-                lista_predita = []
-                for pred in predicao:
-                    if pred >= 0.6:
-                        lista_predita.append(0)
-                    elif pred <= 0.4:
-                        lista_predita.append(1)
-                    else:
-                        lista_predita.append(2)
-
-                classes = ['negativo', 'positivo', 'neutro']
+                lista_predita = predicao.tolist()
+                
+                # df = pd.DataFrame(zip(list_tweets2[0:200], lista_predita), columns=["tweet", "predicao"])
+                
+                # st.table(df)
+                
+                classes = ['negativo', 'positivo']
                 fig = plt.figure(figsize=(5, 2))
                 plt.barh(
                     classes,
                     [lista_predita.count(0)/twitter_number_remaining*100, 
-                     lista_predita.count(1)/twitter_number_remaining*100, 
-                     lista_predita.count(2)/twitter_number_remaining*100]
+                     lista_predita.count(1)/twitter_number_remaining*100]
                 )
                 plt.xlabel("Percentual (%)")
                 plt.ylabel("Rótulos")

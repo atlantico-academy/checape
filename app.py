@@ -1,6 +1,8 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+# from src.app import home, classificador, analise_exploratoria, analise_comparativa, sobre
 from src.app import home, classificador, analise_exploratoria, analise_comparativa, sobre
+
 #from src.data import tweets_downloader
 
 #from st_on_hover_tabs import on_hover_tabs

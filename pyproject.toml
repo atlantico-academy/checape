@@ -25,6 +25,9 @@ streamlit-aggrid = "^0.2.3"
 streamlit-card = "^0.0.3"
 textblob = "^0.17.1"
 snscrape = "^0.4.3"
+wordcloud = "^1.8.2"
+demoji = "^1.1.0"
+joblib = "^1.1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
