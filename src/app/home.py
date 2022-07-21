@@ -14,7 +14,7 @@ from streamlit_tags import st_tags
 from datetime import date, datetime
 twitter_number = 500
 twitter_number_remaining = 200
-
+nltk.download('stopwords')
 
 def page():
     start = "2008-01-01"
