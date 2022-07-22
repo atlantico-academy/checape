@@ -3,7 +3,7 @@ Authors: @pythonistabr / @PauloMarvin
 project: Twitter Sentiment Analysis - Atlantico Bootcamp
 """
 
-from nltk.stem import WordNetLemmatizer
+# from nltk.stem import WordNetLemmatizer
 from pandas import read_csv
 import string
 import spacy
@@ -12,7 +12,7 @@ import re
 
 nlp = spacy.load("pt_core_news_sm");
 
-class TextPreprocesser:
+class TextPreprocessor:
     
     def stemming(texto: str) -> str:
         stemmer = nltk.stem.RSLPStemmer()
@@ -38,12 +38,12 @@ def main():
     
     # load data
     stop_words = read_csv("stopwords.txt")
-    tweet = "Amar e mudar as coisa me interessa mais... (Belchior)"
+    tweet = "o rato roeu a roupa de rei de roma"
     
     # processing
-    no_stopwords_tweet = TextPreprocesser.remove_stop_words(tweet, stop_words);
-    lemmatized_tweet = TextPreprocesser.lemmatization(tweet);
-    stemming_tweet = TextPreprocesser.stemming(tweet);
+    no_stopwords_tweet = TextPreprocessor.remove_stop_words(tweet, stop_words);
+    lemmatized_tweet = TextPreprocessor.lemmatization(tweet);
+    stemming_tweet = TextPreprocessor.stemming(tweet);
     
     print(f"Raw Twett: {tweet}\n")
     print(f"Tweet without stopwords: {no_stopwords_tweet}\n")
