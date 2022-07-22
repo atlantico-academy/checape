@@ -5,6 +5,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 import snscrape.modules.twitter as sntwitter
 import nltk
+import requests
 from wordcloud import WordCloud
 from src.data import tweets_downloader as td
 from src.data import data_cleaning_module as dc
@@ -19,7 +20,7 @@ nltk.download('stopwords')
 def page():
     end = datetime.strftime(datetime.now(), '%Y-%m-%d')
     start = datetime.strftime(datetime.now() - timedelta(days=30), '%Y-%m-%d')
-    st.title("Análise de Sentimentos")  
+    st.title("Checape")  
     tags = st_tags(label="",text= "Pressione enter para adicionar uma tag")    
     use_date = st.checkbox("Limitar data", key="date", value=False)
     if st.session_state["date"]:
@@ -52,7 +53,7 @@ def page():
 
                     # Gerar lista de tweets com maior pontuação
                     list_tweets = list(formated_tweets_ordenados["tweet"])  
-                    # list_tweets2 = list_tweets.copy()                       
+                    list_urls_10 = list(formated_tweets_ordenados["url"])[:10]                      
                     list_tweets_10 = list_tweets[0:10]
 
                     #Préprocessamento de +200
@@ -91,9 +92,6 @@ def page():
 
                     lista_predita = predicao.tolist()
                     
-                    # df = pd.DataFrame(zip(list_tweets2[0:200], lista_predita), columns=["tweet", "predicao"])
-                    
-                    # st.table(df)
                     
                     classes = ['negativo', 'positivo']
                     fig = plt.figure(figsize=(5, 2))
@@ -108,10 +106,16 @@ def page():
                     st.markdown("#### Predição")
                     st.pyplot(fig)
                     st.markdown('''
-                    Explicar como é feita a predição.
-                    Os percentuais [...]
+                    A aplicação busca tweets que contenham as tags digitadas, e que tenham mais de **5 palavras**.
+                    Essa busca retorna os **200 tweets** mais relavantes da busca.
+                    Os textos são pre-processados, removendo links, nomes de usuários e caracteres especiais.
+                    Nesse momento também é aplicado o **stemming**. 
+                    Finalmente, através do modelo de aprendizado de maquina, os tweets são classificados como positivos e negativos.                             
+                    Os percentuais então são calculados a partir do número de tweets pertencentes a cada categoria.
 
-                    Para mais informações acesse [texto](http:/google.com).
+                    Mais detalhes sobre o modelo e da analise são disponíveis nas abas **Analise exploratória** e **Analise comparativa**.
+
+
                     ''')
 
                     list_tweets = list(formated_tweets_ordenados["tweet"])          
@@ -126,15 +130,20 @@ def page():
                     with st.expander("Nuvem de palavras"):
                         st.pyplot(fig)
                         st.markdown('''
-                        A nuvem de palavras [...]
+                        A Nuvem de Palavras (Wordcloud) é uma representação gráfica da frequência e do valor
+                        das palavras encontradas nos tweets conforme a pesquisa. Ela é usada para destacar
+                        com que frequência um termo ou categoria específica aparece em uma fonte de dados.
+                        Quanto mais vezes uma palavra-chave estiver presente no conjunto de dados, maior
+                        e mais forte será a palavra-chave. 
 
-                        Para mais informações acesse [texto](http:/google.com).
+                        Para mais informações acesse o [link](https://en.wikipedia.org/wiki/Tag_cloud).
                         ''')
 
                     with st.expander("Tweets mais relevantes"):
-                        for tweet in list_tweets_10:
-                            st.write(tweet.rstrip())
-                            st.markdown("<hr />", unsafe_allow_html = True)
+                        for url in list_urls_10:
+                            r = requests.get(f"https://publish.twitter.com/oembed?url={url}")
+                            st.markdown(r.json()['html'], unsafe_allow_html=True)
+                            st.markdown('---')
                 else:
                     st.error("Não conseguimos encontrar nenhum tweet para esta palavra chave.")
         else:

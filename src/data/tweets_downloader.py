@@ -12,9 +12,12 @@ def search(limit: int, list_of_queries: list, start = "", end = "") -> list:
     for tweet in sntwitter.TwitterSearchScraper(f"{query} lang:pt since:{start} until:{end}").get_items():
       if len(tweets) >= limit:
         break;  
-      tweets.append({"date":tweet.date, "user_name" :tweet.user.username,
-                    "tweet":tweet.content, "like": tweet.likeCount, 
-                    "retweet": tweet.retweetCount, "pontuacao": (tweet.likeCount + tweet.retweetCount + tweet.replyCount)})
+      tweets.append({
+        "date":tweet.date, "user_name" :tweet.user.username,
+        "tweet":tweet.content, "like": tweet.likeCount, 
+        "retweet": tweet.retweetCount, "pontuacao": (tweet.likeCount + tweet.retweetCount + tweet.replyCount),
+        "url": tweet.url
+      })
   
   return tweets
 
