@@ -28,11 +28,6 @@ snscrape = "^0.4.3"
 wordcloud = "^1.8.2"
 demoji = "^1.1.0"
 joblib = "^1.1.0"
-wordcloud = "^1.8.1"
-nltk = "^3.7"
-demoji = "~1.0"
-snscrape = "^0.4.3"
-spacy = "^3.4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
