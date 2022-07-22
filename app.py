@@ -13,8 +13,8 @@ from src.app import home, classificador, analise_exploratoria, analise_comparati
 with st.sidebar:
     selected = option_menu(
         menu_title = None,
-        options = ["Home", "Análise exploratória", "Análise comparativa", "Classificador", "Sobre"],
-        icons=["house", "search", "book", "folder", "person"],
+        options = ["Home", "Análise exploratória", "Análise comparativa", "Sobre"],
+        icons=["house", "search", "book", "person"],
         menu_icon="cast",
         default_index=0
 
@@ -22,19 +22,12 @@ with st.sidebar:
 
 if selected == "Home":
     home.page()
-    #tweets_downloader.page()
-    #st.write("Home")
-if selected == "Classificador":
-    #classificador.page()
-    st.write("Classificador")
 if selected == "Análise exploratória":
     analise_exploratoria.page()
-    st.write("Análise exploratória")
 if selected == "Análise comparativa":
     analise_comparativa.page()
-    st.write("Análise comparativ")
 if selected == "Sobre":
-    #sobre.page()
-    sobre.teste()
+    sobre.page()
+
 
     
