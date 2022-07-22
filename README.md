@@ -1,35 +1,47 @@
-# <Título do projeto>
+# Análise de sentimentos aplicado às redes sociais
+
+Análise de sentimentos é a tarefa de identificar se a opinião que foi expressa em um determinado texto, é positiva ou negativa. A ascensão das mídias sociais, como blogs e redes sociais tem favorecido o aumento exponencial do número de opiniões, comentários e avaliações como nunca visto antes. 
+
+Diante disso, existe um grande interesse por parte das empresas em saber a opinião de seus clientes acerca dos produtos e serviços oferecidos. O desafio da análise de sentimentos é classificar automaticamente, através de técnicas de machine learning, o texto que está sendo analisado. 
+
+Diante do que foi exposto, utilizaremos algumas técnicas de machine learning para criar um modelo capaz de analisar os dados de redes sociais (twitter) e retornar se os comentários sobre uma empresa foram positivos ou negativos.
+
+O modelo fornecerá uma API para que o usuário forneça os dados da empresa ou serviço a serem pesquisados. Esses dados serão então submetidos ao modelo treinado e o mesmo devolverá o resultado para o usuário.
 
 Insira aqui uma introdução para que o leitor entenda o contexto e os problemas identificados. Tente apresetnar uma justificativa para o projeto. É desejável que também se insira um [graphical abstract](https://www.elsevier.com/authors/tools-and-resources/visual-abstract).
 
 ## Objetivos e resultados chave
 
-Em termos simples, os "Objetivos" se relacionam com a meta do projeto, e os "Resultados-Chave" expressam como essa meta será alcançada. Os Objetivos e resultados chave devem ser definidos no início de um projeto. A ideia é escolher uma métrica associada a um projeto e defini-la como o objetivo. Isso mostra a meta que você deseja alcançar. Em seguida, os resultados-chave são definidos para mostrar como atingir o objetivo. Os resultados principais são mensuráveis ​​e geralmente limitados a três a cinco por objetivo.
+O projeto segue a metodologia CRISP-DM, passando pelas seguintes etapas:
+- Entendimento dos dados;
+- Preparação dos dados;
+- Modelagem dos dados;
+- Avaliação do modelo;
+- Deployment
 
-Em síntese, os objetivos estão ligados as entregas e os resultados chave aos passos que precisam se seguir para conseguir alcançar os resultados.
-Exemplo de objetivos e resultados chave aplicados a projetos de ciência de dados.
+Para alcançar os resultados:
+- Foi utilizada uma API para coleta de dados do twitter;
+- Foi realizada a análise exploratória de dados com o intuito de avaliar os tipos de dados e as variáveis envolvidas;
+- Foram realizados diversos filtros nos dados tais como eliminação de dados duplicados/ausentes, caracteres inúteis, etc.
+- Criação de modelos a partir de algoritmos de machine learning;
+- Testes dos modelos;
+- Comparação dos modelos;
 
- - Realizar uma análise exploratória de dados de <conjunto de dados>
-    - Indentificar variáveis, descrevê-las e definir os tipos de dados
-    - Realizar transformação de variáveis (codificação)
-    - Tratar de valores faltantes e valores discrepantes
-    - ...
- - Criar modelo de detecção de fakenews
-    - Realizar transformação de dados textuais utilizando o tf-idf
-    - ...
- - ...
 
 ## Conteúdo
 
-Utilize esta seção para descrever o que cada notebook faz. Se tiver gerado algum relatório, também utilize essa seção para descrevêlo. Isso facilitará a leitura.
+Como resultado dos passos anteriores foram criados dois jupyter notebook:
+- cleaning-data.ipynb
+- download-data.ipynb
 
 ## Utilização
 
-Descreva aqui quais os passos necessários (dependências externas, comandos, etc.) para replicar o seu projeto. Instalação de dependências necessárias, criação de ambientes virtuais, etc. Este modelo é baseado em um projeto utilizando o [Poetry](https://python-poetry.org/) como gerenciador de dependências e ambientes virtuais. Você pode utilizar o `conda`, ambientes virtuais genéricos do Python ou até mesmo containers do docker. Mas tente fazer algo que seja facilmente reprodutível.
+Este modelo é baseado em um projeto utilizando o [Poetry](https://python-poetry.org/) como gerenciador de dependências e ambientes virtuais. Além disso, a aplicação foi hospedada no [Heroku](https://developer.salesforce.com/docs) usando container [docker](https://www.docker.com/). A versão Python utilizada foi a 3.8.10.
+
 
 ## Desenvolvedores
- - [Contribuidor 1](http://github.com/contribuidor_1)
- - [Contribuidor 2](http://github.com/contribuidor_2)
+ - [Paulo Marvin](https://github.com/PauloMarvin)
+ - [Gustavo Leitão](https://github.com/pythonistabr)
 
 ## Organização de diretórios
 

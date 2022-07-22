@@ -14,6 +14,7 @@ import spacy
 import nltk
 import re
 
+
 nlp = spacy.load("pt_core_news_sm")
 
 def limpa_texto(string):
@@ -63,6 +64,7 @@ def remover_stop_words(texto: str, stop_words: list) -> str:
   return texto
 
   
+
 def get_period(hour):
   if hour >= 0 and hour < 6:
     return "overnight"
@@ -72,7 +74,7 @@ def get_period(hour):
     return "afternoon"
   elif hour >= 18 and hour < 24:
     return "night"
-    
+
 
 def from_utc_to_local_time(london_time: str, london_reference: int):
   london_time = to_datetime(london_time) # str para datetime
@@ -87,3 +89,4 @@ def main():
 
 if __name__ == "__main__":
   main()
+
