@@ -36,7 +36,7 @@ class DataCleanner:
 def main():
         
     # Tests
-    raw_string = "Que M&rd@ esse filme do Thor tá uma bosta @marvelcomics_br :("
+    raw_string = "@NeroImperador o rato roeu a roupa do rei de roma"
     formated_string = DataCleanner.format_text(raw_string) #remove links, usuarios etc
     string_no_special_chars = DataCleanner.remove_special_chars(raw_string)
     string_no_users = DataCleanner.text_cleanning(raw_string)
