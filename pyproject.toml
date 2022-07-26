@@ -28,6 +28,7 @@ snscrape = "^0.4.3"
 wordcloud = "^1.8.2"
 demoji = "^1.1.0"
 joblib = "^1.1.0"
+regex = "^2022.7.25"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Authors: @pythonistabr / @PauloMarvin
 project: Twitter Sentiment Analysis - Atlantico Bootcamp
@@ -10,16 +12,19 @@ import re
 
 class DataCleanner:
     
+    @staticmethod
     def remove_special_chars(text: str) -> str:
         chars = re.escape(string.punctuation)
         clean_text = re.sub(r'['+chars+']','', text)
         return clean_text
     
-    def text_cleanning(string):
+    @staticmethod
+    def text_cleanning(string:str) -> str:
         words = string.split()
         words = [word for word in words if ("@" not in word) and ("http" not in word)]
         return " ".join(words)
     
+    @staticmethod
     def format_text(text: str) -> str:
         text = (
             re.sub(r"(http\S+)|(@\w+)", "", text)  # remove links, usuários #
@@ -34,7 +39,6 @@ class DataCleanner:
     
 
 def main():
-        
     # Tests
     raw_string = "@NeroImperador o rato roeu a roupa do rei de roma"
     formated_string = DataCleanner.format_text(raw_string) #remove links, usuarios etc
